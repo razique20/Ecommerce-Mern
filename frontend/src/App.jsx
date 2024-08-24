@@ -10,6 +10,7 @@ import Orders from './pages/Orders'
 import About from './pages/About'
 import Cart from './pages/Cart'
 import Navbar from './components/Navbar'
+import Footer from './components/Footer'
 const App = () => {
   return (
     <div className='px-4 sm:px[5vw] md:px-[7vw] lg:px-[9vw]'>
@@ -31,6 +32,7 @@ const App = () => {
  
 
       </Routes>
+      <Footer/>
 
     </div>
   )
