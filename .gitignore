@@ -1,1 +1,23 @@
-/node_modules
+# Node.js dependencies for frontend and backend
+/frontend/node_modules
+/backend/node_modules
+
+# Build directories for frontend and backend
+/frontend/dist
+/backend/dist
+/frontend/build
+/backend/build
+
+# Environment files for frontend and backend
+/frontend/.env
+/backend/.env
+
+# Log files
+logs
+*.log
+npm-debug.log*
+
+# Ignore the .DS_Store file (MacOS-specific)
+.DS_Store
+
+# Ignore coverage reports
