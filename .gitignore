@@ -20,4 +20,6 @@ npm-debug.log*
 # Ignore the .DS_Store file (MacOS-specific)
 .DS_Store
 
+.env
+
 # Ignore coverage reports
