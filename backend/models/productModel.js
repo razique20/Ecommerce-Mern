@@ -22,14 +22,14 @@ const productSchema = new mongoose.Schema({
     required: true,
   },
   subCategory: {
-    type: Number,
+    type: String,
     required: true,
   },
   sizes: {
     type: Array,
     required: true,
   },
-  bestSeller: {
+  bestseller: {
     type: Boolean,
     required: true,
   },
