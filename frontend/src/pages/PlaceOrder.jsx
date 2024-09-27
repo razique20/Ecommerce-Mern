@@ -4,6 +4,9 @@ import { assets } from "../assets/assets";
 import CartTotal from "../components/CartTotal";
 import Title from "../components/Title";
 import { ShopContext } from "../context/ShopContext";
+import axios from "axios";
+import { toast } from "react-toastify";
+
 
 const PlaceOrder = () => {
   const [method, setMethod] = useState("cod");
@@ -15,6 +18,7 @@ const PlaceOrder = () => {
     getCartAmount,
     delivery_fee,
     products,
+    token
   } = useContext(ShopContext);
 
   const [formData, setFormData] = useState({
@@ -59,9 +63,39 @@ const PlaceOrder = () => {
         }
       }
 
-      console.log(orderItems);
+      console.log(getCartAmount(), delivery_fee); 
+
+      let orderData = {
+        address:formData,
+        items:orderItems,
+        amount:getCartAmount() + delivery_fee
+      }
+
+      switch(method){
+        // api calls for cash on delivery order
+
+
+        case 'cod':
+          // eslint-disable-next-line no-case-declarations
+          const response = await axios.post(backendUrl + '/api/order/place',orderData,{headers:{token}})
+        if(response.data.success){
+          setCartItems({})
+          navigate('/orders')
+
+        }else{
+          toast.error(response.data.message)
+        }
+
+        break;
+
+
+        default:
+          break;
+      }
+
     } catch (error) {
       console.log(error.message);
+      toast.error(error.message)
     }
   };
 

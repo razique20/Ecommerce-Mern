@@ -10,7 +10,7 @@ const placeOrder = async (req, res) => {
       userId,
       items,
       address,
-      amount,
+      amount: Number(amount),
       paymentMethod: "COD",
       payment: false,
       date: Date.now(),
