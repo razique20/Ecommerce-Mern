@@ -1,12 +1,11 @@
 import { useContext, useState } from "react";
 
+import axios from "axios";
+import { toast } from "react-toastify";
 import { assets } from "../assets/assets";
 import CartTotal from "../components/CartTotal";
 import Title from "../components/Title";
 import { ShopContext } from "../context/ShopContext";
-import axios from "axios";
-import { toast } from "react-toastify";
-
 
 const PlaceOrder = () => {
   const [method, setMethod] = useState("cod");
@@ -16,9 +15,9 @@ const PlaceOrder = () => {
     cartItems,
     setCartItems,
     getCartAmount,
-    delivery_fee,
+    deliveryFee,
     products,
-    token
+    token,
   } = useContext(ShopContext);
 
   const [formData, setFormData] = useState({
@@ -63,39 +62,39 @@ const PlaceOrder = () => {
         }
       }
 
-      console.log(getCartAmount(), delivery_fee); 
+      console.log(getCartAmount(), deliveryFee);
 
       let orderData = {
-        address:formData,
-        items:orderItems,
-        amount:getCartAmount() + delivery_fee
-      }
+        address: formData,
+        items: orderItems,
+        amount: getCartAmount() + deliveryFee,
+      };
 
-      switch(method){
+      switch (method) {
         // api calls for cash on delivery order
 
-
-        case 'cod':
+        case "cod":
           // eslint-disable-next-line no-case-declarations
-          const response = await axios.post(backendUrl + '/api/order/place',orderData,{headers:{token}})
-        if(response.data.success){
-          setCartItems({})
-          navigate('/orders')
+          const response = await axios.post(
+            backendUrl + "/api/order/place",
+            orderData,
+            { headers: { token } }
+          );
+          if (response.data.success) {
+            setCartItems({});
+            navigate("/orders");
+          } else {
+            toast.error(response.data.message);
+          }
 
-        }else{
-          toast.error(response.data.message)
-        }
-
-        break;
-
+          break;
 
         default:
           break;
       }
-
     } catch (error) {
       console.log(error.message);
-      toast.error(error.message)
+      toast.error(error.message);
     }
   };
 
