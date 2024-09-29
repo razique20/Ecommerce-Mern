@@ -22,4 +22,6 @@ npm-debug.log*
 
 .env
 
+*.env
+
 # Ignore coverage reports

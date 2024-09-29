@@ -105,6 +105,10 @@ const PlaceOrder = () => {
 
           break;
 
+          case "razorpay":
+            toast.error("Razorpay integration not implemented yet.");
+            break;
+
         default:
           break;
       }
